@@ -12,5 +12,4 @@ def guardar_route():
     """Endpoint para guardar datos mediante POST."""
     logging.info("Este es un mensaje de información")
     logging.error("Este es un mensaje de error")
-    print("Mensaje para los logs", flush=True)
     return guardar(request.get_json(force=True))
