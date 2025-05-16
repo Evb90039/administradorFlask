@@ -10,6 +10,5 @@ guardar_bp.add_url_rule('/', view_func=guardar, methods=['POST'])
 @guardar_bp.route('/', methods=['POST'])
 def guardar_route():
     """Endpoint para guardar datos mediante POST."""
-    logging.info("Este es un mensaje de información")
-    logging.error("Este es un mensaje de error")
+    logging.error("PRUEBA: Este es un error desde el route")
     return guardar(request.get_json(force=True))
