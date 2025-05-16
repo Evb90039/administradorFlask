@@ -21,3 +21,6 @@ class GuardarModel:
             "apellido": self.apellido,
             "ahorro": self.ahorro,
         }
+
+    def __repr__(self):
+        return f"GuardarModel(nombre={self.nombre}, apellido={self.apellido}, ahorro={self.ahorro})"
