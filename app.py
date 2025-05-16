@@ -22,8 +22,8 @@ try:
     if gunicorn_logger.handlers:
         logging.getLogger().handlers = gunicorn_logger.handlers
         logging.getLogger().setLevel(gunicorn_logger.level)
-except Exception as e:
-    logging.warning(f"No se pudo configurar el logger de Gunicorn: {e}")
+except AttributeError as e:
+    logging.warning("No se pudo configurar el logger de Gunicorn: %s", e)
 
 # Registrar blueprints
 app.register_blueprint(guardar_bp)
