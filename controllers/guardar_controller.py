@@ -1,4 +1,5 @@
 """Controlador para la lógica de guardado."""
+import logging
 from flask import jsonify
 from decorators.decorators import require_json
 from services.guardar_service import guardar_en_firebase
@@ -7,6 +8,7 @@ from models.guardar_model import GuardarModel
 @require_json
 def guardar(data):
     """Procesa y guarda los datos recibidos en la petición."""
+    logging.info("Entrando a la función guardar con data: %s", data)
     guardar_data = GuardarModel(**data)
     print('Intento de guardar:', guardar_data)
 

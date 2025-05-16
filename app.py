@@ -4,6 +4,13 @@ from flask import Flask
 from routes.guardar import guardar_bp
 
 app = Flask(__name__)
+
+if not logging.getLogger().hasHandlers():
+    handler = logging.StreamHandler()
+    formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
+    handler.setFormatter(formatter)
+    logging.getLogger().addHandler(handler)
+
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s %(levelname)s %(message)s'
