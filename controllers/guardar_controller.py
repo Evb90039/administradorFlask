@@ -1,9 +1,12 @@
-from flask import jsonify, request
+"""Controlador para la lógica de guardado."""
+from flask import jsonify
+from decorators.decorators import require_json
 from services.guardar_service import guardar_en_firebase
 from models.guardar_model import GuardarModel
 
-def guardar(req):
-    data = req.get_json()
+@require_json
+def guardar(data):
+    """Procesa y guarda los datos recibidos en la petición."""
     guardar_data = GuardarModel(**data)
     print('Intento de guardar:', guardar_data)
 
@@ -11,9 +14,9 @@ def guardar(req):
         print('Faltan campos requeridos o tipos incorrectos:', guardar_data)
         return jsonify({'error': 'Faltan campos requeridos o tipos incorrectos'}), 400
     try:
-        id = guardar_en_firebase(guardar_data)
-        print('Guardado correctamente, ID:', id)
-        return jsonify({'id': id, 'message': 'Guardado correctamente'})
-    except Exception as error:
+        doc_id = guardar_en_firebase(guardar_data)
+        print('Guardado correctamente, ID:', doc_id)
+        return jsonify({'id': doc_id, 'message': 'Guardado correctamente'})
+    except ValueError as error:
         print('Error al guardar en Firebase:', str(error))
-        return jsonify({'error': 'Error al guardar en Firebase', 'details': str(error)}), 500 
+        return jsonify({'error': 'Error al guardar en Firebase', 'details': str(error)}), 500
