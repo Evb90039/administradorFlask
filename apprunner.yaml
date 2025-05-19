@@ -6,4 +6,4 @@ build:
 run:
   command: gunicorn app:app --bind 0.0.0.0:8080
   network:
-    port: 8080 
+    port: 8080
